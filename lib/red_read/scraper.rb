@@ -15,7 +15,7 @@ class Scraper
     posting = {}
     reddit_page = Nokogiri::HTML(open(reddit_url))
     posting['description'] = reddit_page.css("div.content div.usertext-body div.md")[0].text
-    posting['comment'] = reddit_page.css("div.content div.usertext-body div.md")[1].text
+    posting['top_comment'] = reddit_page.css("div.content div.usertext-body div.md")[1].text
     posting
   end
 end
