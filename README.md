@@ -1,28 +1,14 @@
 # RedRead
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/red_read`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+RedRead allows you to view article details from Reddit right in the command line. The user can enter a subreddit, view the articles on that subreddit's top page, select one of those articles article, and view that article's description and top comment.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'red_read'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install red_read
+You can install this gem via gem install red-read-cli-gem.
 
 ## Usage
 
-TODO: Write usage instructions here
+Run: red-read after installing the gem.
 
 ## Development
 
@@ -38,4 +24,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/[USERN
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
