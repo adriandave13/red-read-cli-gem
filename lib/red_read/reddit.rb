@@ -28,4 +28,11 @@ class Reddit
     @@all
   end
 
+  def self.delete
+    @@all.each do |reddit|
+      reddit = nil
+    end
+    @@all = []
+  end
+
 end

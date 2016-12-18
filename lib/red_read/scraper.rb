@@ -1,7 +1,7 @@
 class Scraper
 
   def self.scrape_subreddit_page(subreddit_url)
-    index_page = Nokogiri::HTML(open(subreddit_url))
+    index_page = Nokogiri::HTML(open(subreddit_url, 'User-Agent' => 'red-read-subreddit').read)
     reddits = []
     index_page.css("div.entry").each do |reddit|
         reddit_title = reddit.css('a.title').text
@@ -13,7 +13,7 @@ class Scraper
 
   def self.scrape_reddit_page(reddit_url)
     posting = {}
-    reddit_page = Nokogiri::HTML(open(reddit_url))
+    reddit_page = Nokogiri::HTML(open(reddit_url, 'User-Agent' => 'red-read-reddit').read)
     posting['description'] = reddit_page.css("div.content div.usertext-body div.md")[0].text
     posting['top_comment'] = reddit_page.css("div.content div.usertext-body div.md")[1].text
     posting

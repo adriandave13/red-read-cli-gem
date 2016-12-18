@@ -8,7 +8,14 @@ class RedRead::CLI
 
   def make_reddits(subreddit_url)
     reddits_array = Scraper.scrape_subreddit_page(subreddit_url)
+    Reddit.delete
     Reddit.create_from_collection(reddits_array)
+  end
+
+  def display_reddits
+    Reddit.all.each.with_index(1) do |reddit, i|
+      puts "#{i}. ".colorize(:light_blue) + "#{reddit.title}"
+    end
   end
 
   def add_attributes_to_reddit(reddit)
@@ -16,16 +23,14 @@ class RedRead::CLI
     reddit.add_reddit_attributes(attributes_hash)
   end
 
-  def display_reddits
-    Reddit.all.each.with_index(1) do |reddit, i|
-      puts "#{i}. #{reddit.title}"
-    end
-  end
-
   def display_reddit_attributes(reddit)
-    puts "Title: #{reddit.title}"
-    puts "Description: #{reddit.description}"
-    puts "Top Comment: #{reddit.top_comment}"
+    puts "--------------------------------------------------".colorize(:blue)
+    puts "Title: ".colorize(:light_blue) + "#{reddit.title}"
+    puts ""
+    puts "Description: ".colorize(:light_blue) + " #{reddit.description}"
+    puts ""
+    puts "Top Comment: ".colorize(:light_blue) + "#{reddit.top_comment}"
+    puts "--------------------------------------------------".colorize(:blue)
   end
 
   def get_subreddit
