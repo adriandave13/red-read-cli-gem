@@ -23,28 +23,38 @@ class RedRead::CLI
   end
 
   def display_reddit_attributes(reddit)
-    puts "#{reddit.title}"
-    puts "#{reddit.description}"
-    puts ""
+    puts "Title: #{reddit.title}"
+    puts "Description: #{reddit.description}"
     puts "Top Comment: #{reddit.top_comment}"
+  end
+
+  def get_subreddit
+    puts "Enter a subreddit:"
+    subreddit_input = gets.strip
+    puts ""
+    subreddit_url = BASE_URL + "/r/" + subreddit_input
+    make_reddits(subreddit_url)
+    display_reddits
   end
 
   def start
     puts "Reddit Reader"
-    subreddit_url = BASE_URL + "/r/" + "mildlyinteresting"
-    make_reddits(subreddit_url)
-    display_reddits
+    get_subreddit
     input = nil
     while input != "exit"
       puts ""
       puts "What reddit would you more information on, by number?"
       puts ""
       puts "Enter list to see the reddits again."
+      puts "Enter new to enter another subreddit."
       puts "Enter exit to end the program."
       puts ""
       input = gets.strip
+      puts ""
       if input == "list"
         display_reddits
+      elsif input == "new"
+        get_subreddit
       elsif input.to_i > 0
         if reddit = Reddit.all[input.to_i - 1]
           add_attributes_to_reddit(reddit)
@@ -52,7 +62,7 @@ class RedRead::CLI
         end
       end
     end
-    puts "Goodbye!!!"
+    puts "Goodbye!"
   end
 
 end
