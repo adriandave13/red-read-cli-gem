@@ -1,9 +1,24 @@
 class RedRead::CLI
 
+  BASE_URL = "https://www.reddit.com"
+
   def call
     puts "Reddit Reader"
-    puts Scraper.scrape_subreddit_page("https://www.reddit.com/r/explainlikeimfive/")
-    puts Scraper.scrape_reddit_page("https://www.reddit.com/r/explainlikeimfive/comments/5it511/eli5_if_an_atom_can_fit_between_my_pinched/?st=iwtkzs89&sh=46490fd4")
+    subreddit_url = BASE_URL + "/r/" + "woahdude"
+    reddit = make_reddits(subreddit_url)
+    add_attributes_to_reddit(reddit)
+    binding.pry
+  end
+
+  def make_reddits(subreddit_url)
+    reddits_array = Scraper.scrape_subreddit_page(subreddit_url)
+    Reddit.create_from_collection(reddits_array)
+    Reddit.all[0]
+  end
+
+  def add_attributes_to_reddit(reddit)
+    attributes_hash = Scraper.scrape_reddit_page(reddit.url)
+    reddit.add_reddit_attributes(attributes_hash)
   end
 
 end

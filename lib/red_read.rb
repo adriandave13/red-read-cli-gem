@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 require 'pry'
+require 'colorize'
 
 require_relative "red_read/version"
 require_relative "red_read/cli"
