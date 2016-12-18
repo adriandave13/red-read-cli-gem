@@ -4,11 +4,11 @@ RedRead allows you to view article details from Reddit right in the command line
 
 ## Installation
 
-You can install this gem via gem install red-read-cli-gem.
+You can install this gem via `gem install red-read-cli-gem`.
 
 ## Usage
 
-Run: red-read after installing the gem.
+Run: `red-read` after installing the gem.
 
 ## Development
 
