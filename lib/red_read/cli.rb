@@ -30,6 +30,8 @@ class RedRead::CLI
     puts "Description: ".colorize(:light_blue) + " #{reddit.description}"
     puts ""
     puts "Top Comment: ".colorize(:light_blue) + "#{reddit.top_comment}"
+    puts ""
+    puts "URL: ".colorize(:light_blue) + "#{reddit.url}"
     puts "--------------------------------------------------".colorize(:blue)
   end
 
