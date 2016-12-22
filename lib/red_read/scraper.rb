@@ -1,12 +1,16 @@
 class Scraper
 
   def self.scrape_subreddit_page(subreddit_url)
-    index_page = Nokogiri::HTML(open(subreddit_url, 'User-Agent' => 'red-read-subreddit').read)
     reddits = []
-    index_page.css("div.entry").each do |reddit|
-        reddit_title = reddit.css('a.title').text
-        reddit_url = reddit.css('li.first a').attr('href').value
-        reddits << {title: reddit_title, url: reddit_url}
+    begin
+      index_page = Nokogiri::HTML(open(subreddit_url, 'User-Agent' => 'red-read-subreddit').read)
+      index_page.css("div.entry").each do |reddit|
+          reddit_title = reddit.css('a.title').text
+          reddit_url = reddit.css('li.first a').attr('href').value
+          reddits << {title: reddit_title, url: reddit_url}
+      end
+    rescue Exception => e
+      puts "Could not read \"#{ subreddit_url }\": #{ e }"
     end
     reddits
   end
