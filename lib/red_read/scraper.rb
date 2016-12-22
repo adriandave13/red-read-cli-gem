@@ -10,7 +10,7 @@ class Scraper
           reddits << {title: reddit_title, url: reddit_url}
       end
     rescue Exception => e
-      puts "Could not read \"#{ subreddit_url }\": #{ e }"
+      puts "Could not read \"#{ subreddit_url }\": ".colorize(:magenta) + "#{ e }"
     end
     reddits
   end

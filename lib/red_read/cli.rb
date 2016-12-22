@@ -8,7 +8,6 @@ class RedRead::CLI
 
   def make_reddits(subreddit_url)
     reddits_array = Scraper.scrape_subreddit_page(subreddit_url)
-    Reddit.delete
     Reddit.create_from_collection(reddits_array)
   end
 
@@ -36,11 +35,14 @@ class RedRead::CLI
   end
 
   def get_subreddit
-    puts "Enter a subreddit:"
-    subreddit_input = gets.strip
-    puts ""
-    subreddit_url = BASE_URL + "/r/" + subreddit_input
-    make_reddits(subreddit_url)
+    Reddit.delete_all
+    while Reddit.all.empty?
+      puts "Enter a subreddit:"
+      subreddit_input = gets.strip
+      puts ""
+      subreddit_url = BASE_URL + "/r/" + subreddit_input
+      make_reddits(subreddit_url)
+    end
     display_reddits
   end
 

@@ -28,7 +28,7 @@ class Reddit
     @@all
   end
 
-  def self.delete
+  def self.delete_all
     @@all.each do |reddit|
       reddit = nil
     end
